@@ -20,9 +20,12 @@ BuildRequires: qt6-rpm-macros
 BuildRequires: qt6-qtbase-devel >= %{qt_version}
 BuildRequires: qt6-qtbase-private-devel
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-BuildRequires: qt6-qtdeclarative-devel >= %{qt_version}
-BuildRequires: qt6-qtpositioning-devel >= %{qt_version}
-BuildRequires: qt6-qtshadertools-devel >= %{qt_version}
+#BuildRequires: qt6-qtdeclarative-devel >= %{qt_version}
+#BuildRequires: qt6-qtpositioning-devel >= %{qt_version}
+#BuildRequires: qt6-qtshadertools-devel >= %{qt_version}
+BuildRequires: pkgconfig(Qt6Quick)
+BuildRequires: pkgconfig(Qt6Positioning)
+BuildRequires: pkgconfig(Qt6ShaderTools)
 BuildRequires: pkgconfig(xkbcommon) >= 0.5.0
 
 
@@ -34,8 +37,10 @@ the data available from some of the popular location services.
 Summary: Development files for %{name}
 Requires: %{name}%{?_isa} = %{version}-%{release}
 Requires: qt6-qtbase-devel%{?_isa}
-Requires: qt6-qtdeclarative-devel%{?_isa}
-Requires: qt6-qtpositioning-devel%{?_isa}
+#Requires: qt6-qtdeclarative-devel%{?_isa}
+#Requires: qt6-qtpositioning-devel%{?_isa}
+Requires: pkgconfig(Qt6Quick)
+Requires: pkgconfig(Qt6Positioning)
 %description devel
 %{summary}.
 
