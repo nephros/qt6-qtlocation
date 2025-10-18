@@ -26,8 +26,8 @@ BuildRequires: qt6-qtbase-private-devel
 BuildRequires: pkgconfig(Qt6Quick)
 BuildRequires: pkgconfig(Qt6Positioning)
 BuildRequires: pkgconfig(Qt6ShaderTools)
-BuildRequires: pkgconfig(xkbcommon) >= 0.5.0
 
+BuildRequires: pkgconfig(xkbcommon) >= 0.5.0
 
 %description
 The Qt Location API helps you create viable mapping solutions using
@@ -63,9 +63,16 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 # Disable LTO
 %global _lto_cflags %{nil}
 
+# FIXME: Mapbox and Nokia do not compile.
+# Mapbox seems to be easy to fix, but that's TODO.
 %cmake_qt6 \
   -DQT_BUILD_EXAMPLES:BOOL=%{?examples:ON}%{!?examples:OFF} \
-  -DQT_INSTALL_EXAMPLES_SOURCES=%{?examples:ON}%{!?examples:OFF}
+  -DQT_INSTALL_EXAMPLES_SOURCES=%{?examples:ON}%{!?examples:OFF} \
+  -DQT_FEATURE_geoservices_osm=ON \
+  -DQT_FEATURE_geoservices_esri=ON \
+  -DQT_FEATURE_geoservices_mapbox=OFF \
+  -DQT_FEATURE_geoservices_nokia=OFF \
+  %{nil}
 
 %cmake_build
 
